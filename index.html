@@ -206,7 +206,7 @@
       border-color: var(--line);
     }
 
-    /* Ledger book mockup (signature element) */
+    /* Ledger book mockup */
     .ledger {
       background: var(--card);
       border: 1px solid var(--line);
@@ -624,6 +624,201 @@
       color: var(--paper);
     }
 
+    /* Pricing Section Styles */
+    #pricing {
+      background: rgba(251, 247, 236, 0.5);
+    }
+
+    .pricing-box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 32px 24px;
+    }
+
+    .plan-trial-banner {
+      text-align: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--seal);
+      background: rgba(181, 52, 42, 0.08);
+      border: 1px solid rgba(181, 52, 42, 0.2);
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+
+    .plan-trial-banner-free span {
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    .plan-promo-banner {
+      background: rgba(166, 130, 47, 0.08);
+      border: 1px solid rgba(166, 130, 47, 0.3);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .plan-promo-banner-title {
+      font-family: 'Noto Serif KR';
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .plan-promo-banner-desc {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .plan-promo-banner-desc b {
+      color: var(--seal);
+    }
+
+    .plan-tiers {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    @media(min-width: 600px) {
+      .plan-tiers {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(min-width: 900px) {
+      .plan-tiers {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .plan-tier {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 20px 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+
+    .plan-tier:hover {
+      border-color: var(--seal);
+    }
+
+    .plan-tier-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .plan-tier-price-original {
+      font-size: 12px;
+      color: #888;
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+
+    .plan-tier-price-promo {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--seal);
+    }
+
+    .plan-tier-note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .feature-compare {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media(min-width: 700px) {
+      .feature-compare {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .feature-compare-col {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 20px;
+    }
+
+    .feature-compare-col-locked {
+      background: rgba(234, 224, 198, 0.25);
+    }
+
+    .feature-compare-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 12px;
+      font-family: 'Noto Serif KR';
+    }
+
+    .feature-compare-list {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.9;
+    }
+
+    .subscription-status {
+      background: var(--paper-2);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink);
+      margin: 16px 0;
+      border: 1px solid var(--line);
+    }
+
+    .consent-block {
+      margin-bottom: 20px;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .consent-row input {
+      margin-top: 3px;
+    }
+
+    .settings-share-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Modal */
     #imageModal {
       display: none;
       position: fixed;
@@ -725,6 +920,7 @@
         <a href="#features">주요기능</a>
         <a href="#roles">권한구조</a>
         <a href="#guide">사용가이드</a>
+        <a href="#pricing">요금제 안내</a>
       </div>
       <a href="#guide" class="btn btn-primary" style="padding:10px 20px; font-size:14px;">가이드 보기</a>
     </nav>
@@ -1227,6 +1423,120 @@
     </div> <!-- /.wrap -->
   </section>
 
+  <div class="divider"></div>
+
+  <!-- Pricing Section (요금제 안내) 추가 -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">요금제 안내</div>
+        <h2 class="section-title">합리적인 비용으로 부담 없이 시작하세요</h2>
+        <p class="section-desc">규모에 알맞은 다양한 플랜이 준비되어 있으며, 작은 교회는 평생 무료로 응원합니다.</p>
+      </div>
+
+      <div class="pricing-box" id="subscriptionBox">
+        <!-- 1. 무료 혜택 배너 -->
+        <div class="plan-trial-banner">
+          🎁 가입 후 2달(60일) 동안 모든 기능 무료
+        </div>
+        <div class="plan-trial-banner plan-trial-banner-free">
+          🏡 0~30명 교회<br />
+          <span>❤️ 작은 교회를 응원하기 위해 평생 무료로 제공합니다.</span>
+        </div>
+
+        <!-- 2. 프로모션 배너 -->
+        <div class="plan-promo-banner">
+          <div class="plan-promo-banner-title">📣 오픈 기념 프로모션 적용 중</div>
+          <div class="plan-promo-banner-desc">
+            올해 가입한 교회라 할인 요금이 적용됩니다.<br />
+            <b>2027. 12. 31.까지</b>만 이 가격이 유지되니, 그 전에 구독을 시작해두시면 이후 갱신 결제도 계속 할인가로 청구됩니다.
+          </div>
+        </div>
+
+        <!-- 3. 인원별 요금제 카드 (4열) -->
+        <div class="plan-tiers" id="planTiersContainer">
+          <div class="plan-tier">
+            <div class="plan-tier-name">31~100명</div>
+            <div class="plan-tier-price-original">월 9,900원</div>
+            <div class="plan-tier-price-promo">월 7,900원</div>
+            <div class="plan-tier-note">⭐ 가장 많이 선택하는 요금제</div>
+          </div>
+          <div class="plan-tier">
+            <div class="plan-tier-name">101~250명</div>
+            <div class="plan-tier-price-original">월 19,900원</div>
+            <div class="plan-tier-price-promo">월 14,900원</div>
+          </div>
+          <div class="plan-tier">
+            <div class="plan-tier-name">251~600명</div>
+            <div class="plan-tier-price-original">월 39,900원</div>
+            <div class="plan-tier-price-promo">월 29,900원</div>
+          </div>
+          <div class="plan-tier">
+            <div class="plan-tier-name">601명 이상</div>
+            <div class="plan-tier-price-original">월 69,900원</div>
+            <div class="plan-tier-price-promo">월 49,900원</div>
+            <div class="plan-tier-note">🏛️ 대형 교회 요금제</div>
+          </div>
+        </div>
+
+        <!-- 4. 무료 vs 유료 기능 비교 -->
+        <div class="feature-compare">
+          <div class="feature-compare-col">
+            <div class="feature-compare-title">✅ 무료 요금제도 사용 가능</div>
+            <ul class="feature-compare-list">
+              <li>팀원 관리</li>
+              <li>팀 관리</li>
+              <li>출석 체크</li>
+              <li>공지사항</li>
+              <li>로그인 / 카카오 로그인</li>
+              <li>최근 출석 조회</li>
+              <li>광고 없이 사용</li>
+            </ul>
+          </div>
+          <div class="feature-compare-col feature-compare-col-locked">
+            <div class="feature-compare-title">🔒 유료 요금제 전용 기능</div>
+            <ul class="feature-compare-list">
+              <li>전체 통계</li>
+              <li>엑셀 업로드 / 다운로드</li>
+              <li>헌금 체크</li>
+              <li>성경 체크</li>
+              <li>기도제목 관리</li>
+              <li>행사 일정 안내</li>
+              <li>장기결석 자동 관리</li>
+              <li>미출석 사유 기록</li>
+              <li>전체 출석 보기</li>
+              <li>로고 변경</li>
+              <li>데이터 백업 및 복원</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 안내 문구 & 상태 박스 -->
+        <p class="section-desc" style="font-size: 13.5px; margin-bottom: 12px; text-align: left;">
+          가입 후 60일간은 모든 기능을 무료로 이용하실 수 있습니다. 이후에도 교회 등록 인원이 30명 이하라면 계속 무료로 이용하실 수 있고, 31명 이상부터는 인원 규모에 따라 위 요금제가 적용됩니다.
+        </p>
+        
+        <div class="subscription-status" id="subscriptionStatusBox">
+          ● 무료 이용 중 - 2026. 11. 1.까지 전 기능이 무료입니다.<br />
+          📣 지금 구독을 시작하면 오픈 기념가 <b>월 7,900원</b>이 2027. 12. 31.까지 그대로 유지됩니다.
+        </div>
+
+        <!-- 동의 체크박스 & 결제 버튼
+        <div class="consent-block" id="subscriptionConsentBlock">
+          <label class="consent-row">
+            <input type="checkbox" id="subscriptionConsentCheck" />
+            <span>(필수) 결제 즉시 서비스 이용이 시작되며, 서비스 이용 개시 후에는 「전자상거래 등에서의 소비자보호에 관한 법률」에 따른 청약철회가 제한될 수 있음에 동의합니다.</span>
+          </label>
+        </div>
+        
+        <div class="settings-share-actions">
+          <button class="btn btn-primary" id="subscribeBtn">구독 시작하기 (월 7,900원)</button>
+          <button class="btn btn-ghost" id="subscribeCardBtn">카드로 결제하기</button>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
   <!-- 이미지 확대 모달 팝업 구조 -->
   <div id="imageModal">
     <span class="close-modal">&times;</span>
@@ -1244,10 +1554,10 @@
           <a href="#about">소개</a>
           <a href="#features">주요기능</a>
           <a href="#guide">사용가이드</a>
+          <a href="#pricing">요금제 안내</a>
         </div>
       </div>
       <div class="foot-bottom">
-        <!-- <span>© 2026 새로운빛</span> -->
         <p>
           상호명: 새로운빛 &nbsp;|&nbsp; 대표자: 강새빛<br />
           사업자등록번호: 506-60-43457<br />
