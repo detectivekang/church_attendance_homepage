@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#F3ECD9">
   <title>교회 출석부 | 교회를 위한 스마트한 출석부</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Pretendard:wght@400;500;600;700&display=swap');
@@ -906,6 +907,97 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 10px;
+    }
+
+    /* ===== 모바일 안전 영역 대응 (전면 카메라·노치·상태바·하단 홈 바) =====
+       viewport-fit=cover 로 화면 전체를 쓰는 대신, 카메라/노치가 가리는 부분만큼 env(safe-area-inset-*)로 여백을 준다.
+       (PC나 노치가 없는 폰에서는 inset 값이 0이라 기존 모습 그대로다) */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    .wrap {
+      padding-left: max(24px, env(safe-area-inset-left));
+      padding-right: max(24px, env(safe-area-inset-right));
+    }
+
+    /* 헤더 배경은 카메라 뒤까지 채우고, 로고·버튼은 카메라 아래에서 시작 */
+    header {
+      padding-top: env(safe-area-inset-top);
+    }
+
+    footer {
+      padding-bottom: calc(32px + env(safe-area-inset-bottom));
+    }
+
+    /* 이미지 확대 창: 닫기 버튼이 카메라에 가리지 않게 */
+    #imageModal {
+      padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+    }
+
+    #imageModal img {
+      max-height: 90vh;
+      max-height: 90dvh;
+    }
+
+    #imageModal .close-modal {
+      top: max(20px, calc(env(safe-area-inset-top) + 8px));
+      right: max(30px, calc(env(safe-area-inset-right) + 16px));
+      line-height: 1;
+      padding: 4px 8px;
+    }
+
+    /* 작은 폰 */
+    @media(max-width:600px) {
+      section {
+        padding: 56px 0;
+      }
+
+      .hero {
+        padding: 48px 0 48px;
+      }
+
+      .section-head {
+        margin-bottom: 32px;
+      }
+    }
+
+    @media(max-width:480px) {
+      .wrap {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+      }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 28px;
+      }
+
+      .cta-row .btn {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .ledger {
+        padding: 22px 18px;
+      }
+    }
+
+    /* 폰을 가로로 눕혔을 때: 세로 공간이 좁으니 헤더·여백을 줄인다 (카메라는 좌/우 안전 영역이 처리) */
+    @media(orientation:landscape) and (max-height:520px) {
+      nav.wrap {
+        height: 56px;
+      }
+
+      .hero {
+        padding: 36px 0 36px;
+      }
+
+      section {
+        padding: 48px 0;
+      }
     }
   </style>
 </head>
