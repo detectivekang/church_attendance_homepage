@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#F3ECD9">
-  <title>교회 출석부 | 교회를 위한 스마트한 출석부</title>
+  <title>교회 출석부 · 교회관리 | 교회를 위한 스마트한 출석·운영 관리</title>
+  <meta name="description" content="교회 출석부와 교회관리 사용 설명서. 출석 체크부터 교인·헌금·교육·행사 관리까지, 교회 조직 구조에 맞춘 온라인 서비스를 안내합니다.">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Pretendard:wght@400;500;600;700&display=swap');
 
@@ -909,8 +910,120 @@
       gap: 10px;
     }
 
+    /* ===== 교회관리 추가: 서비스 구성 카드 / 단독 단계 ===== */
+    .logo-plus {
+      color: var(--gold);
+      font-size: 0.72em;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media(min-width:800px) {
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card-manage {
+      border-color: var(--seal);
+    }
+
+    .service-tag {
+      align-self: flex-start;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--paper);
+      background: var(--ink);
+      border-radius: 12px;
+      padding: 3px 10px;
+      margin-bottom: 12px;
+    }
+
+    .service-card-manage .service-tag {
+      background: var(--seal);
+    }
+
+    .service-card h3 {
+      font-family: 'Noto Serif KR';
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .service-card>p {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+    }
+
+    .service-card ul {
+      margin: 14px 0 22px 18px;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    .service-card ul li {
+      margin-bottom: 4px;
+    }
+
+    .service-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .service-actions .btn {
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+
+    /* 스크린샷 없이 글로만 설명하는 단계 */
+    .step.step-solo {
+      grid-template-columns: 1fr;
+    }
+
+    .step p a {
+      color: var(--seal);
+      font-weight: 600;
+    }
+
+    .menu-list {
+      list-style: none;
+      margin-left: 0 !important;
+    }
+
+    .menu-list li {
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .menu-list li:last-child {
+      border-bottom: none;
+    }
+
+    @media(max-width:999px) {
+      .navlinks {
+        gap: 18px;
+        font-size: 14px;
+      }
+    }
+
     /* ===== 모바일 안전 영역 대응 (전면 카메라·노치·상태바·하단 홈 바) =====
-       viewport-fit=cover 로 화면 전체를 쓰는 대신, 카메라/노치가 가리는 부분만큼 env(safe-area-inset-*)로 여백을 준다.
+       viewport-fit=cover 로 화면 전체를 쓰고, 카메라/노치가 가리는 부분만큼 env(safe-area-inset-*)로 여백을 준다.
        (PC나 노치가 없는 폰에서는 inset 값이 0이라 기존 모습 그대로다) */
     html {
       -webkit-text-size-adjust: 100%;
@@ -922,7 +1035,6 @@
       padding-right: max(24px, env(safe-area-inset-right));
     }
 
-    /* 헤더 배경은 카메라 뒤까지 채우고, 로고·버튼은 카메라 아래에서 시작 */
     header {
       padding-top: env(safe-area-inset-top);
     }
@@ -931,7 +1043,6 @@
       padding-bottom: calc(32px + env(safe-area-inset-bottom));
     }
 
-    /* 이미지 확대 창: 닫기 버튼이 카메라에 가리지 않게 */
     #imageModal {
       padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
     }
@@ -948,7 +1059,6 @@
       padding: 4px 8px;
     }
 
-    /* 작은 폰 */
     @media(max-width:600px) {
       section {
         padding: 56px 0;
@@ -960,6 +1070,11 @@
 
       .section-head {
         margin-bottom: 32px;
+      }
+
+      .tab-btn {
+        padding: 10px 16px;
+        font-size: 14px;
       }
     }
 
@@ -983,9 +1098,17 @@
       .ledger {
         padding: 22px 18px;
       }
+
+      .service-card {
+        padding: 22px 18px;
+      }
+
+      .service-actions .btn {
+        flex: 1 1 100%;
+        justify-content: center;
+      }
     }
 
-    /* 폰을 가로로 눕혔을 때: 세로 공간이 좁으니 헤더·여백을 줄인다 (카메라는 좌/우 안전 영역이 처리) */
     @media(orientation:landscape) and (max-height:520px) {
       nav.wrap {
         height: 56px;
@@ -1008,19 +1131,20 @@
     <!-- Open Graph / 카카오톡, 페이스북, 소셜 미디어 공유 설정 -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://church-attendance-six.vercel.app/">
-    <meta property="og:title" content="교회 출석부 | 교회를 위한 스마트한 출석부">
-    <meta property="og:description" content="번거로운 수기 출석부는 그만, 교회 조직 구조에 맞춘 스마트한 온라인 출석부">
+    <meta property="og:title" content="교회 출석부 · 교회관리 | 교회를 위한 스마트한 출석·운영 관리">
+    <meta property="og:description" content="출석 체크는 교회 출석부에서, 교인·헌금·행사 같은 교회 운영은 교회관리에서. 교회 조직 구조에 맞춘 온라인 서비스 사용 설명서">
     <meta property="og:image" content="https://detectivekang.github.io/church_attendance_homepage/images/icon-512.png">
 
     <!-- Twitter 카드 설정 -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="교회 출석부 | 교회를 위한 스마트한 출석부">
-    <meta name="twitter:description" content="번거로운 수기 출석부는 그만, 교회 조직 구조에 맞춘 스마트한 온라인 출석부">
+    <meta name="twitter:title" content="교회 출석부 · 교회관리 | 교회를 위한 스마트한 출석·운영 관리">
+    <meta name="twitter:description" content="출석 체크는 교회 출석부에서, 교인·헌금·행사 같은 교회 운영은 교회관리에서. 교회 조직 구조에 맞춘 온라인 서비스 사용 설명서">
     <meta name="twitter:image" content="https://detectivekang.github.io/church_attendance_homepage/images/icon-512.png">
     <nav class="wrap">
-      <div class="logo">교회 출석부</div>
+      <div class="logo">교회 출석부<span class="logo-plus">+ 교회관리</span></div>
       <div class="navlinks">
         <a href="#about">소개</a>
+        <a href="#services">서비스</a>
         <a href="#features">주요기능</a>
         <a href="#roles">권한구조</a>
         <a href="#guide">사용가이드</a>
@@ -1034,12 +1158,13 @@
     <div class="wrap">
       <div>
         <div class="eyebrow">교회 출석 관리, 새로운 방식</div>
-        <h1 class="hero-title">번거로운 수기 출석부는 그만,<br><em>교회 출석부</em> 하나로 관리하세요</h1>
-        <p class="hero-sub">운영자·그룹장·팀장이 각자의 자리에서 출석을 기록하고, 교회 전체의 흐름을 한눈에 확인하는 교회 전용 출석 관리 앱입니다.</p>
+        <h1 class="hero-title">번거로운 수기 출석부는 그만,<br><em>교회 출석부</em>와 <em>교회관리</em>로 <br>한 번에 관리하세요</h1>
+        <p class="hero-sub">운영자·그룹장·팀장이 각자의 자리에서 출석을 기록하고, 운영자는 교회관리 화면에서 교인 정보와 교회 운영까지 한눈에 확인하는 교회 전용 서비스입니다.</p>
         <div class="cta-row">
           <a href="#guide" class="btn btn-primary">사용가이드 보러가기</a>
           <a href="#features" class="btn btn-ghost">주요기능 살펴보기</a>
-          <a href="https://church-attendance-six.vercel.app/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">시작하기</a>
+          <a href="https://church-attendance-six.vercel.app/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">교회 출석부 시작하기</a>
+          <a href="https://detectivekang.github.io/church_management/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">교회관리 열기 (운영자)</a>
         </div>
       </div>
       <div class="ledger">
@@ -1071,7 +1196,7 @@
       <div class="section-head">
         <div class="eyebrow">소개</div>
         <h2 class="section-title">교회가 실제로 겪는 문제에서 시작했습니다</h2>
-        <p class="section-desc">엑셀 파일과 종이 출석부를 오가며 매주 반복되던 수기 작업을, 교회 조직 구조에 맞춘 온라인 출석부 하나로 정리했습니다.</p>
+        <p class="section-desc">엑셀 파일과 종이 출석부를 오가며 매주 반복되던 수기 작업을 교회 조직 구조에 맞춘 온라인 출석부로 정리했고, 이제 교인 정보와 교회 운영까지 교회관리 화면에서 이어서 관리할 수 있습니다.</p>
       </div>
       <div class="about-grid">
         <div class="about-card">
@@ -1095,23 +1220,68 @@
 
   <div class="divider"></div>
 
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">서비스 구성</div>
+        <h2 class="section-title">출석은 출석부에서, 운영은 교회관리에서</h2>
+        <p class="section-desc">두 서비스는 서로 이어져 있습니다. 매주 출석은 교회 출석부에서 기록하고, 교인 정보와 교회 운영은 교회관리에서 한곳에 모아 관리합니다.</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card">
+          <span class="service-tag">운영자 · 그룹장 · 팀장</span>
+          <h3>📖 교회 출석부</h3>
+          <p>교회 조직(그룹·팀)에 맞춰 출석을 기록하고 통계를 확인하는 출석 관리 앱입니다.</p>
+          <ul>
+            <li>운영자·그룹장·팀장 모두 팀원 관리와 출석 체크 가능</li>
+            <li>그룹·팀 구조 만들기, 초대 링크로 가입·승인</li>
+            <li>출석 통계, 개근·정근 현황, 기도제목, 행사 일정</li>
+            <li>엑셀 업로드·다운로드, 홈 화면 설치(PWA)</li>
+          </ul>
+          <div class="service-actions">
+            <a href="https://church-attendance-six.vercel.app/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">교회 출석부 시작하기</a>
+            <a href="#guide" class="btn btn-ghost" data-open-tab="admin">출석부 사용가이드</a>
+          </div>
+        </div>
+        <div class="service-card service-card-manage">
+          <span class="service-tag">운영자 전용</span>
+          <h3>🏢 교회관리</h3>
+          <p>교인 정보와 교회 운영 업무를 운영자 한 화면에서 관리하는 홈페이지입니다. 운영자만 접근할 수 있습니다.</p>
+          <ul>
+            <li>홈 대시보드: 전체 등록자 · 재적 교인 · 이번 달 새가족</li>
+            <li>교인 상세정보 · 가족 관리 · 조직 관리</li>
+            <li>문자 발송 · 헌금 관리 · 교육 관리 · 행사 관리</li>
+            <li>공지사항 등록, 월별 등록자 현황, 이번 달 생일자</li>
+            <li>교회 출석부 연동</li>
+          </ul>
+          <div class="service-actions">
+            <a href="https://detectivekang.github.io/church_management/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">교회관리 열기</a>
+            <a href="#guide" class="btn btn-ghost" data-open-tab="manage">교회관리 사용가이드</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
   <section id="features">
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">주요기능</div>
         <h2 class="section-title">매주 반복되는 일을 가볍게</h2>
-        <p class="section-desc">출석 체크부터 통계, 회비 관리까지 — 교회 운영에 필요한 기능을 한 곳에 모았습니다.</p>
+        <p class="section-desc">출석 체크와 통계부터 교인 관리, 교회 운영까지 — 필요한 기능을 한 곳에 모았습니다.</p>
       </div>
       <div class="feat-grid">
         <div class="feat">
           <div class="icon">✓</div>
           <h3>간편 출석 체크</h3>
-          <p>이름을 누르면 도장이 찍히듯 출석이 기록됩니다. 그룹·팀별로 나누어 관리할 수 있습니다.</p>
+          <p>이름을 누르면 도장이 찍히듯 출석이 기록됩니다. 팀장은 물론 그룹장과 운영자도 직접 출석을 체크할 수 있습니다.</p>
         </div>
         <div class="feat">
           <div class="icon">☰</div>
           <h3>성도 명단 관리</h3>
-          <p>새가족 등록부터 그룹 배정까지, 성도 정보를 한 곳에서 정리하고 검색합니다.</p>
+          <p>새가족 등록부터 그룹 배정까지, 성도 정보를 한 곳에서 정리하고 검색합니다. 팀원 관리는 팀장·그룹장·운영자 모두 할 수 있습니다.</p>
         </div>
         <div class="feat">
           <div class="icon">◫</div>
@@ -1136,7 +1306,7 @@
         <div class="feat">
           <div class="icon">🔒</div>
           <h3>권한별 화면 분리</h3>
-          <p>운영자·그룹장·팀장은 각자 필요한 화면과 데이터만 볼 수 있도록 구분되어 있습니다.</p>
+          <p>운영자·그룹장·팀장은 각자 필요한 화면과 데이터만 볼 수 있고, 교회관리 화면은 운영자만 접근할 수 있도록 구분되어 있습니다.</p>
         </div>
         <div class="feat">
           <div class="icon">📱</div>
@@ -1147,6 +1317,21 @@
           <div class="icon">🏛</div>
           <h3>다중 교회 지원</h3>
           <p>여러 교회가 같은 서비스를 쓰더라도 데이터는 교회별로 완전히 독립적으로 보호됩니다.</p>
+        </div>
+        <div class="feat">
+          <div class="icon">🏢</div>
+          <h3>교회관리 홈페이지</h3>
+          <p>교인 상세정보, 문자 발송, 헌금·교육·조직·가족·행사 관리를 한곳에서 볼 수 있는 운영자 전용 화면입니다.</p>
+        </div>
+        <div class="feat">
+          <div class="icon">📢</div>
+          <h3>공지사항 · 등록 현황</h3>
+          <p>교회관리 홈에서 공지사항을 등록하고, 월별 등록자 현황과 이번 달 생일자를 한눈에 확인합니다.</p>
+        </div>
+        <div class="feat">
+          <div class="icon">🔗</div>
+          <h3>출석부 연동</h3>
+          <p>교회관리와 교회 출석부가 이어져 있어, 출석 관리와 교회 운영 관리를 오가며 사용할 수 있습니다.</p>
         </div>
       </div>
     </div>
@@ -1159,21 +1344,21 @@
       <div class="section-head">
         <div class="eyebrow">권한구조</div>
         <h2 class="section-title">역할에 맞는 화면만, 딱 필요한 만큼</h2>
-        <p class="section-desc">3단계 권한 구조로, 각자 맡은 범위의 정보만 보고 관리합니다.</p>
+        <p class="section-desc">3단계 권한 구조로, 각자 맡은 범위의 정보만 보고 관리합니다. 팀원 관리와 출석 체크는 세 역할 모두 할 수 있습니다.</p>
       </div>
       <div class="roles">
         <div class="role-step">
           <div class="role-badge">운영자</div>
           <div class="role-info">
             <h4>운영자 (교회 관리자)</h4>
-            <p>교회 전체 성도·그룹·팀 구성과 구독·결제를 관리합니다.</p>
+            <p>교회 전체 성도·그룹·팀 구성과 구독·결제를 관리하고, 팀원 관리와 출석 체크도 직접 할 수 있습니다. 교회관리 화면은 운영자만 사용할 수 있습니다.</p>
           </div>
         </div>
         <div class="role-step">
           <div class="role-badge">그룹장</div>
           <div class="role-info">
             <h4>그룹장</h4>
-            <p>담당 그룹의 성도 명단과 출석을 관리하고 팀장을 지정합니다.</p>
+            <p>담당 그룹의 성도 명단과 출석을 관리하고 팀장을 지정합니다. 팀장처럼 팀원 관리와 출석 체크도 직접 할 수 있습니다.</p>
           </div>
         </div>
         <div class="role-step">
@@ -1193,14 +1378,15 @@
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">사용가이드</div>
-        <h2 class="section-title">권한별 사용 방법</h2>
-        <p class="section-desc">역할을 선택하면 순서대로 사용법을 안내합니다.</p>
+        <h2 class="section-title">권한별 · 서비스별 사용 방법</h2>
+        <p class="section-desc">역할(또는 교회관리)을 선택하면 순서대로 사용법을 안내합니다.</p>
       </div>
 
       <div class="tabbar">
         <button class="tab-btn active" data-tab="admin">운영자</button>
         <button class="tab-btn" data-tab="leader">그룹장</button>
         <button class="tab-btn" data-tab="team">팀장</button>
+        <button class="tab-btn" data-tab="manage">교회관리 (운영자 전용)</button>
       </div>
 
       <!-- 운영자 -->
@@ -1326,6 +1512,28 @@
             </div>
           </div>
         </div>
+
+        <div class="step step-solo">
+          <div>
+            <div class="step-num">STEP 7</div>
+            <h4>팀원 관리 · 출석 체크 (운영자도 가능)</h4>
+            <p>이제 운영자도 팀장처럼 팀원 명단을 관리하고 출석을 직접 체크할 수 있습니다.</p>
+            <ul>
+              <li>팀원 개별 추가·수정·삭제, 엑셀 업로드로 일괄 등록</li>
+              <li>이름을 눌러 간편하게 출석 체크</li>
+            </ul>
+            <p>자세한 사용 순서는 <a href="#guide" data-open-tab="team">팀장 탭의 '팀원 명단 관리'·'매주 출석 체크'</a>를 참고하세요.</p>
+          </div>
+        </div>
+
+        <div class="step step-solo">
+          <div>
+            <div class="step-num">ETC</div>
+            <h4>교회관리 홈페이지</h4>
+            <p>운영자는 출석부와 별도로 <b>교회관리 홈페이지</b>도 사용할 수 있습니다. 교인 정보, 문자 발송, 헌금·교육·행사 관리 등 교회 운영을 한곳에서 관리하세요.</p>
+            <p><a href="#guide" data-open-tab="manage">교회관리 사용가이드 보기 →</a></p>
+          </div>
+        </div>
       </div>
 
       <!-- 그룹장 -->
@@ -1411,6 +1619,18 @@
               <button class="zoom-btn">🔍 원본 보기</button>
               <div class="shot-label">그룹장 대시보드 2</div>
             </div>
+          </div>
+        </div>
+        <div class="step step-solo">
+          <div>
+            <div class="step-num">STEP 5</div>
+            <h4>팀원 관리 · 출석 체크 (그룹장도 가능)</h4>
+            <p>이제 그룹장도 팀장처럼 팀원 명단을 관리하고 출석을 직접 체크할 수 있습니다.</p>
+            <ul>
+              <li>팀원 개별 추가·수정·삭제, 엑셀 업로드로 일괄 등록</li>
+              <li>이름을 눌러 간편하게 출석 체크</li>
+            </ul>
+            <p>자세한 사용 순서는 <a href="#guide" data-open-tab="team">팀장 탭의 '팀원 명단 관리'·'매주 출석 체크'</a>를 참고하세요.</p>
           </div>
         </div>
       </div>
@@ -1524,6 +1744,69 @@
           </div>
         </div>
       </div> <!-- /#team -->
+
+      <!-- 교회관리 (운영자 전용) -->
+      <div class="tab-panel" id="manage">
+        <div class="step step-solo">
+          <div>
+            <div class="step-num">STEP 1</div>
+            <h4>교회관리 접속하기</h4>
+            <p>교회관리는 <b>운영자만</b> 접근할 수 있는 별도의 홈페이지입니다.</p>
+            <ul>
+              <li>교회관리 주소로 접속해 운영자 계정으로 로그인합니다.</li>
+              <li>그룹장·팀장 계정으로는 사용할 수 없습니다.</li>
+            </ul>
+            <p style="margin-top:14px;"><a class="btn btn-primary" href="https://detectivekang.github.io/church_management/" target="_blank" rel="noopener noreferrer" style="padding:10px 20px; font-size:14px;">교회관리 열기</a></p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div>
+            <div class="step-num">STEP 2</div>
+            <h4>홈 화면 한눈에 보기</h4>
+            <p>로그인하면 가장 먼저 나오는 홈 화면에서 교회 현황을 확인합니다.</p>
+            <ul>
+              <li><b>요약 카드</b>: 전체 등록자 · 재적 교인 · 이번 달 새가족</li>
+              <li><b>바로가기 버튼</b>: 문자 발송, 헌금 관리, 교육 관리, 조직 관리, 가족 관리, 행사 관리</li>
+              <li><b>공지사항</b>: 새 공지를 입력하고 '등록'을 누르면 올라가며, ✕ 버튼으로 지울 수 있습니다.</li>
+              <li><b>월별 등록자 현황</b>: 최근 8개월 동안의 등록자 수 (등록일 기준)</li>
+              <li><b>이번 달 생일자</b>: 이번 달 생일인 교인 확인</li>
+            </ul>
+          </div>
+          <div class="shot-frame">
+            <img src="images/교회관리-홈.png" alt="교회관리 홈 화면">
+            <button class="zoom-btn">🔍 원본 보기</button>
+            <div class="shot-label">교회관리 홈 화면</div>
+          </div>
+        </div>
+
+        <div class="step step-solo">
+          <div>
+            <div class="step-num">STEP 3</div>
+            <h4>상단 메뉴 둘러보기</h4>
+            <p>화면 위쪽 메뉴에서 원하는 관리 화면으로 이동합니다.</p>
+            <ul class="menu-list">
+              <li><b>홈</b> — 요약, 공지사항, 등록자 현황, 생일자를 한눈에</li>
+              <li><b>교인 상세정보</b> — 교인 정보를 확인하고 관리</li>
+              <li><b>문자 발송</b> — 교인에게 문자 메시지 발송</li>
+              <li><b>헌금 관리</b> — 헌금 내역 관리</li>
+              <li><b>교육 관리</b> — 교회 교육 관련 내용 관리</li>
+              <li><b>조직 관리</b> — 교회 조직 관리</li>
+              <li><b>가족 관리</b> — 교인의 가족 관계 관리</li>
+              <li><b>행사 관리</b> — 교회 행사 관리</li>
+              <li><b>출석부 연동</b> — 교회 출석부와 연동</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step step-solo">
+          <div>
+            <div class="step-num">STEP 4</div>
+            <h4>교회 출석부로 돌아가기</h4>
+            <p>화면 오른쪽 위의 <b>'교회 출석부'</b> 버튼으로 출석부 앱으로 이동하고, <b>'로그아웃'</b> 버튼으로 로그아웃합니다.</p>
+          </div>
+        </div>
+      </div> <!-- /#manage -->
 
     </div> <!-- /.wrap -->
   </section>
@@ -1652,11 +1935,12 @@
     <div class="wrap">
       <div class="footer-top">
         <div>
-          <div class="logo">교회 출석부</div>
-          <p class="foot-desc">교회 조직 구조에 맞춘 온라인 출석부. 운영자, 그룹장, 팀장이 함께 씁니다.</p>
+          <div class="logo">교회 출석부<span class="logo-plus">+ 교회관리</span></div>
+          <p class="foot-desc">교회 조직 구조에 맞춘 온라인 출석부와 운영자 전용 교회관리. 운영자, 그룹장, 팀장이 함께 씁니다.</p>
         </div>
         <div class="foot-cta">
           <a href="#about">소개</a>
+          <a href="#services">서비스</a>
           <a href="#features">주요기능</a>
           <a href="#guide">사용가이드</a>
           <a href="#pricing">요금제 안내</a>
@@ -1684,6 +1968,21 @@
         document.getElementById(btn.dataset.tab).classList.add('active');
       });
     });
+
+    // 사용가이드 탭 바로 열기: data-open-tab 링크, 그리고 주소 끝에 #guide-manage 같은 해시를 붙여 들어온 경우
+    function activateTab(name) {
+      const btn = document.querySelector('.tab-btn[data-tab="' + name + '"]');
+      if (btn) btn.click();
+    }
+    document.querySelectorAll('[data-open-tab]').forEach(a => {
+      a.addEventListener('click', () => activateTab(a.dataset.openTab));
+    });
+    const hashTab = (location.hash.match(/^#guide-(admin|leader|team|manage)$/) || [])[1];
+    if (hashTab) {
+      activateTab(hashTab);
+      const g = document.getElementById('guide');
+      if (g) g.scrollIntoView();
+    }
 
     // 이미지 확대 모달 제어 기능
     const modal = document.getElementById('imageModal');
